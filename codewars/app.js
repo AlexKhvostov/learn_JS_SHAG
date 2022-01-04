@@ -54,15 +54,37 @@
 
 ///////////////////////
 
-let s = "sdfsdthejwemocw";
-let len = 0;
-let error = 0;
+// let s = "sdfsdthejwemocw";
+// let len = 0;
+// let error = 0;
 
-for (let i = 0; i < s.length; i++) {
-  if (s[i] <= "m") {
-    len++;
-  } else {
-    error++;
-  }
+// for (let i = 0; i < s.length; i++) {
+//   if (s[i] <= "m") {
+//     len++;
+//   } else {
+//     error++;
+//   }
+// }
+// console.log(error / len);
+
+/////////////////////////
+
+let value = 23432;
+
+let str = value.toString();
+let minII = Math.round(value ** (1 / 4));
+let count = value.toString().length;
+
+for (let i = 0; i < count; i++) {
+  value = value - str[i] ** count;
 }
-console.log(error / len);
+
+if (value == 0) {
+  console.log("да");
+  return true;
+} else {
+  console.log("нет");
+  return false;
+}
+
+let sd = value == 0 ? true : false;
