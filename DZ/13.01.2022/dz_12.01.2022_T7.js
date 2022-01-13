@@ -6,9 +6,9 @@
 // let n1 = +prompt("введите  число n: ");
 let k = "";
 
-for (let i = 1; i <= 10; i++) {
-  for (let j = 1; j <= 10; j++) {
-    if (i == j) {
+for (let i = 1; i <= 100; i++) {
+  for (let j = 1; j <= 100; j++) {
+    if (i == j || i == 101 - j) {
       k += "0";
     } else {
       k += "1";
