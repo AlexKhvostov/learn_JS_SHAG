@@ -1,4 +1,4 @@
-// "use strict";
+"use strict";
 
 // // let s = "123qwe__ewq321";
 // // let l = s.length;
@@ -50,8 +50,19 @@
 
 // Дана строка. Определите, какой символ в ней встречается раньше: 'x' или 'w'. Если какого-то из символов нет, вывести сообщение об этом.
 
-let s = "   Hello     World,    oh oh   oh ! ! !   ! ";
-while (s.indexOf("  ") >= 0) {
-  s = s.replaceAll("  ", " ");
+// let s = "   Hello     World,    oh oh   oh ! ! !   ! ";
+// while (s.indexOf("  ") >= 0) {
+//   s = s.replaceAll("  ", " ");
+// }
+// console.log(s);
+
+// Вот так даже лучше
+let n = 11;
+for (let i = 1; i <= n; i += 2) {
+  console.log(
+    ""
+      .padStart((n - i) / 2, "*")
+      .padEnd((n + i) / 2, "A")
+      .padEnd(n, "*")
+  );
 }
-console.log(s);
