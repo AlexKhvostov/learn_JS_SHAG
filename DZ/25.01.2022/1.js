@@ -99,7 +99,7 @@ let arr = [
   78.29, 28.79, 43.3, -20.51, 28.19, -1.41, -38.59, -40.8, -46.34, -68.75, 63.2,
   -40.29, -89.22, -20.29, -76.32, 27.92, -2.97,
 ];
-// let arr = [1.22, 1.22, 0, 1.88, -15, 5, 0, -4.5];
+arr = [1.22, 1.22, 0, 1.88, -15, 5, 0, -4.5];
 console.log(`Исходный массив: \n ${arr}`);
 let minEl = arr[0];
 let maxEl = arr[0];
@@ -130,6 +130,22 @@ arr.forEach((e) => {
     sum0to0 += e;
   }
 });
+
+let firstZeroNext = arr.indexOf(0) != -1 ? arr.indexOf(0)+1 : 0;
+let secondZeroLast =
+  arr.indexOf(0, firstZero) != -1 && arr.indexOf(0) != -1
+    ? arr.indexOf(0, firstZero + 1)-1
+    : arr.length;
+
+console.log(firstZero, secondZeroLast);
+
+let arr0to0 = arr.slice(firstZero , secondZeroLast );
+
+let sum0to02 = 0;
+
+
+
+
 
 // console.log('-===========================================-');
 // console.log('Найдите наименьший четный элемент массива');

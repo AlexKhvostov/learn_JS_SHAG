@@ -21,6 +21,7 @@ let arrStrForNum = str.split(``);
 let arrNumFromStr = [];
 let indexArrNum = 0;
 let sumNum = 0;
+
 arrStrForNum.forEach((e) => {
   if (isFinite(e) || e == '.') {
     arrNumFromStr[indexArrNum] += e;
