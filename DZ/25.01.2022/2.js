@@ -1,7 +1,7 @@
 `use strict`;
 let str =
   'Lorem Ipsum is simply du5mmy text of the printing and typesetting industry. Lorem Ips1um has been the industry`s standard du2mmy text ever since the 1s, when an unknown printer took a galley of type and scram4bled it to make a type spe6cimen book. It has survived not only five cen8turies, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 9s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum';
-str = `Asd a3d f  3Dd f.34DD erTr43`;
+//str = `Asd a3d f  3Dd f.34DD erTr43`;
 
 let arrStr = str.split(` `);
 console.log(arrStr);
