@@ -10,7 +10,7 @@ let arr = [
 ];
 /** тестовый массив для упрощения проверки. расскоментировать следующую строку */
 
-//arr = [7, -5, 4, -3, -2, -1, 6, 8, -9];
+arr = [7, -5, 4, -3, -2, -1, 6, 8, -9, 7];
 
 /**   Ответы для тестового массива _ чтобы они работали расскоментировать строку выше
  * Первый четный отрицательный элемент:  -2  (четный индекс = 4)
@@ -114,11 +114,25 @@ console.log(`\n(?) * Определите есть ли в массиве оди
 /**
  * без комментириев, тут интересно подумать
  */
-let cop = 'zero';
+
+/** 1й способ */
+let duble = 'zero';
 arr.forEach((e, i, a) => {
-  cop = a
-    .slice(0, i)
-    .concat(arr.slice(i + 1))
-    .some((el) => e === el);
+  if (duble != true) {
+    duble = a
+      .slice(0, i)
+      .concat(arr.slice(i + 1))
+      .some((el) => e === el);
+  }
 });
-console.log(cop);
+console.log(duble);
+
+/** 2й способ */
+duble = false;
+
+arr.forEach((element) => {
+  if (arr.filter((e) => element == e) >= 2 && duble != true) {
+    duble = true;
+  }
+});
+console.log(duble);
