@@ -6,20 +6,28 @@ function Triangle(a, b, c) {
   this.b = +b;
   this.c = +c;
 
+  // this.isReal = function () {
+  //   if (
+  //     this.a + this.b > this.c &&
+  //     this.a + this.c > this.b &&
+  //     this.c + this.b > this.a
+  //   ) {
+  //     //console.log(        `Треугольник со сторонами ${this.a}, ${this.b} и ${this.c} существоет. `      );
+  //     return true;
+  //   } else {
+  //     console.log(
+  //       `Треугольника со сторонами ${this.a}, ${this.b} и ${this.c} не существоет. `
+  //     );
+  //     return false;
+  //   }
+  // };
+
   this.isReal = function () {
-    if (
+    return (
       this.a + this.b > this.c &&
       this.a + this.c > this.b &&
       this.c + this.b > this.a
-    ) {
-      //console.log(        `Треугольник со сторонами ${this.a}, ${this.b} и ${this.c} существоет. `      );
-      return true;
-    } else {
-      console.log(
-        `Треугольника со сторонами ${this.a}, ${this.b} и ${this.c} не существоет. `
-      );
-      return false;
-    }
+    );
   };
 
   this.print = function () {

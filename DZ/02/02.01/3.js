@@ -14,7 +14,7 @@ function Reis(cityStart, cityFinish, driver = {}, auto = {}, manager = {}) {
   this.driver = driver;
   this.auto = auto;
   this.num = NaN;
-  this.status = 'новая'; // ноаая , в дороге , таможня , завершена
+  this.status = 'новая'; // новая , в дороге , таможня , завершена
   if (new.target) {
     reises.push(this);
   }
