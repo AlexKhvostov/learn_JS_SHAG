@@ -1,7 +1,26 @@
+// Задача 1
+// Получите по адресу https://jsonplaceholder.typicode.com/users массив объектов
+
+// Преобразуйте их в массив объектов вида
+//   [
+//       {
+//           id: 1, // соответсвующий id из JSON
+//           name: 'FIRSTNAME', //Возьмите только имя (часть строки до первого пробела), сделайте все буквы заглавными
+//           phone: 'номер телефона', // Удалите все кроме цифр
+//           location: {
+//               street: 'Улица',
+//               index: 'Почтовый индекс',
+//               number: 'Номер suite' // Оставьте только цифры ("suite": "Apt. 950" => number: 950 (число))
+//           }
+//       },
+//       ....
+//   ]
+// Полученный массив преобразуйте заменив phone на сумму ТОЛЬКО четных цифр из этого же свойства
+// Отсортируйте массив по name
+// Удалите из массив всех в номере дома которых есть цифра 1
+// Разделите индекс всех на 2 и округлите результат до целого вверх
+// Выведите результат
 "use strict";
-
-// выяснить разницу между унарным плюсом Number.isInteger и isInteger!!!
-
 const request = new XMLHttpRequest();
 
 request.open("GET", "https://jsonplaceholder.typicode.com/users");
@@ -11,38 +30,25 @@ request.onload = function () {
   const result = request.response;
 
   const object = JSON.parse(result);
-  // TODO: type code here
 
   const f = object.map((user) => {
     return {
-      name: user.name,
-      city: user.address.city,
-      street: user.address.street,
-      email: user.email.slice(user.email.indexOf("@") + 1),
+      id: user.id,
+      name: user.name.slice(0, user.name.indexOF(" ")).ToUpperCase(), // 'FIRSTNAME', //Возьмите только имя (часть строки до первого пробела), сделайте все буквы заглавными
       phone: user.phone
-        .replaceAll("x", "-")
-        .replaceAll(".", "-")
-        .replaceAll(" ", ""),
-      sumGeo:
-        Number.parseInt(user.address.geo.lat) +
-        Number.parseInt(user.address.geo.lng),
-      numPhone: user.phone
         .split("")
-        .map((i) => (Number.isInteger(+i) ? +i : "++")),
-
-      sumNumPhone: user.phone.split("").reduce((s, i) => {
-        if (Number.isInteger(+i)) {
-          return (s += +i);
-        } else {
-          return (s += 0);
-        }
-      }, 0),
+        .filter((e) => Number.isInteger(parseInt(e)))
+        .join(""), // 'номер телефона', // Удалите все кроме цифр
+      location: {
+        street: user.address.street, //'Улица',
+        index: user.address.zipcode, //'Почтовый индекс',
+        number: user.address.suite
+          .split("")
+          .filter((e) => Number.isInteger(parseInt(e)))
+          .join(""), // 'Номер suite' // Оставьте только цифры ("suite": "Apt. 950" => number: 950 (число))
+      },
     };
   });
-
-  console.log(f.filter((e) => e.phone.includes("0")));
-  console.log(`=`);
-  console.log(f.filter((e) => !e.phone.includes("0")));
 };
 
 request.send();
