@@ -20,13 +20,13 @@
 // Удалите из массив всех в номере дома которых есть цифра 1
 // Разделите индекс всех на 2 и округлите результат до целого вверх
 // Выведите результат
-"use strict";
+'use strict';
 const request = new XMLHttpRequest();
 
-request.open("GET", "https://jsonplaceholder.typicode.com/users");
+request.open('GET', 'https://jsonplaceholder.typicode.com/users');
 
 request.onload = function () {
-  console.log("Onload");
+  console.log('Onload');
   const result = request.response;
 
   const object = JSON.parse(result);
@@ -34,22 +34,22 @@ request.onload = function () {
   const f = object.map((user) => {
     return {
       id: user.id,
-      name: user.name.slice(0, user.name.indexOF(" ")).ToUpperCase(), // 'FIRSTNAME', //Возьмите только имя (часть строки до первого пробела), сделайте все буквы заглавными
+      name: user.name.slice(0, user.name.indexOf(' ')).toUpperCase(), // 'FIRSTNAME', //Возьмите только имя (часть строки до первого пробела), сделайте все буквы заглавными
       phone: user.phone
-        .split("")
+        .split('')
         .filter((e) => Number.isInteger(parseInt(e)))
-        .join(""), // 'номер телефона', // Удалите все кроме цифр
+        .join(''), // 'номер телефона', // Удалите все кроме цифр
       location: {
         street: user.address.street, //'Улица',
         index: user.address.zipcode, //'Почтовый индекс',
         number: user.address.suite
-          .split("")
+          .split('')
           .filter((e) => Number.isInteger(parseInt(e)))
-          .join(""), // 'Номер suite' // Оставьте только цифры ("suite": "Apt. 950" => number: 950 (число))
+          .join(''), // 'Номер suite' // Оставьте только цифры ("suite": "Apt. 950" => number: 950 (число))
       },
     };
   });
 };
 
 request.send();
-console.log("Done");
+console.log('Done');
