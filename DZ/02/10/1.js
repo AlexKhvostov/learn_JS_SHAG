@@ -21,11 +21,14 @@ xhr.onload = function () {
   const result = xhr.response; //  Получаем ответ, это JSON строка
   const object = JSON.parse(result); // Преобразуем строку в JS объект
   // Пишем код домашки ТУТ!!!
-  /**
+  /**из json получаем один объект состоящий из трех больших массивов.
+   * Работаем с 3 большими   которые получаем из json ()
    * object.images
    * object.users
    * object.albums
    */
+
+  // создаем объект на основе массива object.images. создаем свойства преобразуя их по заданным условиям используя комбинации всех трех больших массивов.
   let images = object.images.map((image) => {
     return {
       imageId: image.imageId, // 49,
