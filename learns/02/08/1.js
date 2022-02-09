@@ -1,45 +1,39 @@
-// Задача 2
-// Получите по адресу https://jsonplaceholder.typicode.com/posts массив объектов
-
-// (->) Удалите из массив все элементы title который больше 25 символов
-// Каждуй первую букву слова из свойства body сделайте заглавной
-// Отсортируйте массив по длине body
-// Удалите из всех элементов свойство userId
-// Выведите результат
-// Преобразуйте результат в JSON строку и вывидите
-
-'use strict';
+"use strict";
 const request = new XMLHttpRequest();
 
-request.open('GET', 'http://192.168.0.200:3000/1');
+request.open("GET", "http://192.168.0.200:3000/1");
 
 request.onload = function () {
-  console.log('Onload');
+  console.log("Onload");
   const result = request.response;
 
   const object = JSON.parse(result);
-  let users = object.users;
-  let posts = object.posts;
-  // TODO: type code here
+  let users = object.users; // присваиваем переменной users масив users из объекта переданного из json
+  let posts = object.posts; // присваиваем переменной posts масив posts из объекта переданного из json
 
+  // TODO: type code here
   const userList = users.map((user) => {
+    // перебираем массив users по элементам и в переменную userList в качестве элементов передаем объект который создаем ниже в return
     return {
-      name: user.name,
-      id: user.id,
-      posts: posts.filter((e) => e.userId === user.id),
+      name: user.name, // добавляем свойтво name
+      id: user.id, // добавляем свойтво id
+      posts: posts.filter((post) => post.userId === user.id), // посты в которых автор - тенкущий пользователь. то есть userId поста (posts) равен id пользователя(users).
+      //Для этого фильтруем весь массив posts по условию "(e) => e.userId === user.id". получаем массив постов в которых userId равен id пользователя
     };
   });
 
-  posts.forEach((p) => {
-    p.user = users.find((u) => u.id === p.userId).name;
+  //добавить в пост автора поста
+  posts.forEach((post) => {
+    //двигаемся по списку постов ( по массиву posts ). и в каждый пост (элемент массива) добавляем свойство user и для получения его значения ищим пользователя с id ==  userIв поста.
+    post.user = users.find((user) => user.id === post.userId).name; // берем массив пользователей и с помощью find ищем в нем элемент в котором id пользователя (user.id) равно userId поста (post.userId)
   });
 
-  console.log(userList);
-  console.log('users у которых нет постов:');
-  console.log(userList.filter((e) => e.posts == 0));
-  console.log('посты с юзерами:');
-  console.log(posts);
+  console.log(userList); // выводим начальный список пользователй
+  console.log("users у которых нет постов:");
+  console.log(userList.filter((e) => e.posts == 0)); // выводим обновленный список пользователей
+  console.log("посты с юзерами:");
+  console.log(posts); // выводим список постов
 };
 
 request.send();
-console.log('Done');
+console.log("Done");
