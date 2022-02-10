@@ -32,9 +32,9 @@ xhr.onload = function () {
   let images = object.images.map((image) => {
     return {
       imageId: image.imageId, // 49,
-      image: image.image, // "http://placeimg.com/640/480/abstract",
-      width: image.width, // "448px",
-      height: image.height, // "758px"
+      image: image.image.slice(image.image.lastIndexOf('/') + 1), // "http://placeimg.com/640/480/abstract",
+      width: parseInt(image.width), // "448px",
+      height: parseInt(image.height), // "758px"
       countImgUp800: object.images.filter(
         (img) => parseInt(img.width) >= 800 && parseInt(img.height) >= 800
       ).length,
@@ -45,7 +45,47 @@ xhr.onload = function () {
     (img) => parseInt(img.width) >= 800 && parseInt(img.height) >= 800
   ).length;
 
+  console.log('картинки 1 ');
   console.log(images);
+
+  console.log('картинки 2 ');
+
+  console.log(
+    images
+      .sort((e1, e2) => {
+        if (e1.image > e2.image) {
+          return 1;
+        }
+        if (e1.image < e2.image) {
+          return -1;
+        }
+        return 0;
+      })
+      .map((el, i, arr) => {
+        if (i > 0 && arr[i].image === arr[i - 1].image) {
+          return '';
+        } else {
+          return el;
+        }
+      })
+      .filter((e) => e != '')
+  );
+
+  console.log('картинки 3 ');
+
+  console.log(
+    images.reduce((akkum, img, i, arr) => {
+      console.log(akkum);
+      if (!akkum.includes(img.image)) {
+        akkum.push(img.image);
+      } else {
+        img = '';
+      }
+
+      return akkum;
+    }, [])
+  );
+
   console.log(`кол-во картинок разрешением больше 800: ${countImgUp800}`);
 
   let users = object.users.map((user) => {
