@@ -9,4 +9,4 @@ console.log(nowDate);
 let countMilliSec = nowDate - wasBorn.getTime();
 
 console.log(countMilliSec);
-console.log(countMilliSec - 1_000_000_000_000);
+console.log(countMilliSec - 1000000000000);
