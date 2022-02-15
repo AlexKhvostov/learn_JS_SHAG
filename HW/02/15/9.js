@@ -129,7 +129,7 @@ console.log(
 ObjofArr.forEach((e) => console.log(e));
 
 ObjofArr.sort((word1, word2) => {
-  if (word1.word > word2.wor) {
+  if (word1.word > word2.word) {
     return 1;
   }
   if (word1.word < word2.word) {
