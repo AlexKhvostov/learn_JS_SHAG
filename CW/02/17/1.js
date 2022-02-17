@@ -13,7 +13,7 @@ let user = {
 let authUser = {
   name: 'authUser',
   pasword: 123,
-  email: 'Lf@FileSystem.ru', 
+  email: 'Lf@FileSystem.ru',
 };
 
 function Admin(name, age) {
