@@ -7,3 +7,33 @@
 // Oбъекты circle, rectangle содержат координаты точек.
 // Создать массив содержащий эти фигуры.
 // В цикле нарисовать их (вызвать метод draw).
+
+"use strict";
+
+let share = {
+  color: "black",
+
+  draw() {
+    console.log(`x = ${this.x}, y = ${this.y}.`);
+  },
+};
+
+let circle = Object.create(share);
+let rectangle = Object.create(share);
+
+rectangle.l1 = 40;
+rectangle.l2 = 42;
+rectangle.x = 1;
+rectangle.y = 3;
+
+circle.r = 32;
+circle.x = 5;
+circle.y = 66;
+
+let arr = [rectangle, circle];
+
+console.log(arr);
+
+arr.forEach((share) => {
+  share.draw();
+});
