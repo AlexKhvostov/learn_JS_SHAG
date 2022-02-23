@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      div {
+        margin: 10px;
+        padding: 10px;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      div-1
+      <div>
+        div_0
+        <div>up</div>
+        <div id="target">
+          div_target
+
+          <div></div>
+          <div></div>
+        </div>
+        <div>down</div>
+      </div>
+    </div>
+
+    <ui>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+      <li>7</li>
+
+      <li>8</li>
+      <li>9</li>
+    </ui>
+    <script>
+      const lis = Array.from(document.body.querySelectorAll('li'));
+      lis.forEach((li) => {
+        n = Number.parseInt(li.textContent);
+        if (n % 2 == 1) {
+          //li.remove();
+        } else {
+          li.style.color = 'blue';
+          li.style.fontSize = 15;
+        }
+      });
+
+      const div = document.querySelector('#target');
+      div.style.background = 'green';
+      div.parentElement.style.color = 'white';
+      div.parentElement.style.background = 'red';
+
+      div.previousElementSibling.style.background = 'blue';
+      div.nextElementSibling.style.background = 'yellow';
+      div.nextElementSibling.style.color = 'blue';
+
+      div.firstElementChild.style.background = 'white';
+      div.lastElementChild.style.background = 'black';
+
+      let i = 1;
+      setInterval(() => {
+        div.lastElementChild.style.transform = `rotate(${i * 0.2}deg)`;
+        div.firstElementChild.style.transform = `rotate(${i++ * -2}deg)`;
+        i++;
+      }, 15);
+
+      let li = Array.from(document.querySelectorAll('li'));
+      let g = 10;
+
+      setInterval(() => {
+        li.forEach((li) => {
+          li.style.fontSize = `${Math.random() * 20 + 10}px`;
+          li.style.color = `#${Math.round(Math.random() * 100)}${Math.round(
+            Math.random() * 100
+          )}${Math.round(Math.random() * 100)}`;
+        });
+      }, 200);
+    </script>
+  </body>
+</html>

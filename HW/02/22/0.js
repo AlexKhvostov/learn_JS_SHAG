@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 let log = console.log;
 
 function Person(name) {
@@ -8,11 +8,11 @@ function Person(name) {
   };
 }
 Person.prototype.talk = function () {
-  log("Hello, my name is " + this.name);
+  log('Hello, my name is ' + this.name);
 };
 
-let person1 = new Person("Alice");
-let person2 = new Person("Peter");
+let person1 = new Person('Alice');
+let person2 = new Person('Peter');
 person1.speak();
 person2.talk();
 
@@ -23,10 +23,7 @@ function Something(defaultFoo) {
   this._foo = defaultFoo;
 }
 
-console.log(something._foo);
-console.log(something.foo);
-
-Object.defineProperty(Something.prototype, "foo", {
+Object.defineProperty(Something.prototype, 'foo', {
   get: function () {
     return this._foo;
   },
@@ -35,7 +32,8 @@ Object.defineProperty(Something.prototype, "foo", {
   },
 });
 
-var something = new Something("bar");
+var something = new Something('bar');
 console.log(something.foo);
-something.foo = "baz";
+something.foo = 'baz';
 console.log(something.foo);
+console.log(something);

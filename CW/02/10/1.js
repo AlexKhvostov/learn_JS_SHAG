@@ -76,10 +76,10 @@ xhr.onload = function () {
   console.log(
     albums
       .sort((tit1, tit2) => {
-        if (tit1 > tit2) {
+        if (tit1.title > tit2.title) {
           return 1;
         }
-        if (tit1 < tit2) {
+        if (tit1.title < tit2.title) {
           return -1;
         }
         return 0;
