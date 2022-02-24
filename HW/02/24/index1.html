@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <style>
+      li {
+        list-style: square;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li>
+        <p>text1</p>
+      </li>
+      <li>
+        <p class="small">text2</p>
+      </li>
+      <li>
+        <p>text3</p>
+      </li>
+      <li>
+        <p class="big">text4</p>
+      </li>
+      <li>
+        <p>text5</p>
+      </li>
+    </ul>
+
+    <script>
+      const lis = Array.from(document.body.querySelectorAll('p'));
+      //const lis = Array.from(document.body.querySelectorAll('li'));
+      console.log(lis);
+
+      lis.forEach((e, i) => {
+        console.log(e.parentElement);
+        e.parentElement.classList.add('item');
+        if ((i + 1) % 2 == 0) {
+          e.style.textDecoration = 'underline';
+        }
+      });
+      lis.forEach((e, i, arr) => {
+        console.log(e.textContent);
+        e.className = '';
+        if (e.textContent == 'text3') {
+          e.remove();
+        }
+      });
+
+      let newLis = lis.filter((e) => e.textContent != 'text3'); // не меняет содержимое
+    </script>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <style>
+      div {
+        margin: 50px;
+        padding: 50px;
+        border: 2px black dashed;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div></div>
+      <div>
+        <div>
+          <div></div>
+          <div>
+            <div></div>
+            <div></div>
+          </div>
+          <div></div>
+        </div>
+      </div>
+      <div></div>
+      <div>
+        <div></div>
+        <div>
+          <div></div>
+        </div>
+        <div></div>
+        <div></div>
+      </div>
+      <div></div>
+    </div>
+
+    <script>
+      // Закрасьте все div у которых нет дочерних элементов синим цветом
+      // Закрасьте все div у которых только 1 дочерний элемент желтым
+      // Закрасьте все div у которых больше 2 дочерних элементов серым
+
+      const div = Array.from(document.body.querySelectorAll('div'));
+      console.log(div);
+
+      div.forEach((e, i) => {
+        console.dir(` ${i + 1}  div - ` + e.children.length);
+        if (e.children.length == 0) {
+          e.style.background = 'blue';
+          e.classList.add(`${e.children.length}`);
+          // e.textContent = `blue  ${e.children.length}`;
+        }
+        if (e.children.length == 1) {
+          e.style.background = 'yellow';
+          e.classList.add(`${e.children.length}`);
+          // e.textContent = `yellow  ${e.children.length}`;
+        }
+        if (e.children.length == 2) {
+          e.style.background = 'gray';
+          e.classList.add(`${e.children.length}`);
+          // e.textContent = `gray  ${e.children.length}`;
+        }
+        if (e.children.length > 2) {
+          e.style.background = 'aqua';
+          e.classList.add(`${e.children.length}`);
+          // e.textContent = `gray  ${e.children.length}`;
+        }
+      });
+    </script>
+  </body>
+</html>
