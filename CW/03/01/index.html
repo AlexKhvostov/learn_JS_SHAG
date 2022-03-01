@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>0</p>
+    <input type="button" value="-" />
+    <input type="button" value="+" />
+
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+      <li>7</li>
+      <li>8</li>
+    </ul>
+
+    <script>
+      function calcLi(e) {
+        console.log(e);
+        if (e.type == 'click') {
+          this.textContent = parseInt(this.textContent) + 1;
+        }
+        if (e.type == 'contextmenu') {
+          this.textContent = parseInt(this.textContent) - 1;
+        }
+      }
+
+      const lis = document.body.querySelectorAll('li');
+      lis.forEach((li) => {
+        li.style.backgroundColor =
+          '#' + Math.floor(Math.random() * 16777215).toString(16);
+      });
+
+      lis.forEach((li) => {
+        li.addEventListener('click', green);
+        li.addEventListener('click', calcLi);
+        li.addEventListener('contextmenu', calcLi);
+      });
+
+      function green() {
+        if (this.style.backgroundColor == 'green') {
+          this.style.backgroundColor =
+            '#' + Math.floor(Math.random() * 16777215).toString(16);
+        } else {
+          this.style.backgroundColor = 'green';
+        }
+      }
+      console.log('#' + Math.floor(Math.random() * 16777215).toString(16));
+
+      const pCalc = document.body.querySelector('p');
+
+      function calc() {
+        if (this.value == '+') {
+          pCalc.textContent = parseInt(pCalc.textContent) + 1;
+        }
+        if (this.value == '-') {
+          pCalc.textContent = parseInt(pCalc.textContent) - 1;
+        }
+      }
+
+      const inputs = document.body.querySelectorAll('input');
+
+      inputs.forEach((input) => input.addEventListener('click', calc));
+
+      pCalc.addEventListener('', calc);
+    </script>
+  </body>
+</html>

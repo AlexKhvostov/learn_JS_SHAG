@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const arrCat = [
+        'https://cdnn21.img.ria.ru/images/151546/28/1515462835_0:0:1036:587_600x0_80_0_0_a75f922e8b052d966122e1c9dc40feb4.jpg',
+        'https://www.tvr.by/upload/iblock/42d/42d1898756e574fcaf9b7519c354ce9c.jpg',
+        'https://lapkins.ru/upload/resize_cache/iblock/279/1024_500_2/27909e2ec654fdec7e45ded44c45e574.jpg',
+      ];
+      const body = document.body;
+      const ul = document.createElement('ul');
+      const li = document.createElement('li');
+      body.append(ul);
+      ul.append(li);
+
+      for (let i = 0; i < arrCat.length; i++) {
+        const img = document.createElement('img');
+        img.src = arrCat[i];
+        li.append(img);
+
+        img.style.width = '200px';
+        img.style.height = '100px';
+      }
+
+      arrCat.forEach((e) => {});
+    </script>
+  </body>
+</html>

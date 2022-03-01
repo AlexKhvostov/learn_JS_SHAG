@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+
+    <style>
+      dody {
+      }
+
+      div {
+      }
+    </style>
+  </head>
+  <body
+    style="width: 800px; height: 800px; background-color: rgb(196, 250, 109)"
+  >
+    <div
+      style="
+        width: 30px;
+        height: 30px;
+        background-color: red;
+        position: absolute;
+      "
+    ></div>
+
+    <input
+      style="
+        width: 40px;
+        height: 20px;
+        background-color: rgb(0, 248, 41);
+        position: absolute;
+      "
+      type="button"
+      value="run"
+    />
+
+    <script>
+      document.body.addEventListener('click', run);
+      const div = document.body.querySelector('div');
+      const btn = document.body.querySelector('input');
+
+      function run(event) {
+        console.log(event);
+        div.style.left = event.clientX + 'px';
+        div.style.top = event.clientY + 'px';
+      }
+
+      btn.addEventListener('mouseover', runOut);
+
+      function runOut(event) {
+        this.style.left = event.clientX + 1 + 'px';
+
+        this.style.top = event.clientY + 1 + 'px';
+      }
+    </script>
+  </body>
+</html>

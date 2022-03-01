@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const div1 = document.createElement('div');
+      const p = document.createElement('p');
+      let body = document.body;
+
+      p.textContent = 'hi Jek';
+
+      document.body.prepend(div1);
+      div1.prepend(p);
+
+      body.style.width = '800px';
+
+      div1.style.background = 'red';
+
+      body.style.margin = 'auto';
+
+      div1.style.margin = 'auto';
+      div1.style.padding = '40px';
+      div1.style.border = '10px';
+      div1.style.borderStyle = 'dotted';
+      div1.style.borderColor = 'green';
+      p.style.color = 'yellow';
+
+      const ul = document.createElement('ul');
+      body.append(ul);
+
+      for (let i = 1; i < 10; i++) {
+        const li = document.createElement('li');
+        ul.append(li);
+        li.textContent = `${i}`;
+        if (i % 2 === 0) {
+          li.style.background = 'yellow';
+        }
+      }
+      let i = 10;
+
+      function addLi() {
+        if (i > 20) {
+          clearInterval(timer);
+        }
+        const li = document.createElement('li');
+
+        ul.append(li);
+        li.textContent = `${i}`;
+        if (i % 2 === 0) {
+          li.style.background = 'yellow';
+        }
+
+        i++;
+      }
+
+      let timer = setInterval(addLi, 400);
+    </script>
+  </body>
+</html>
