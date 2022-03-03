@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+
+    <style>
+      body {
+        width: 800px;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      div {
+        width: 20px;
+        height: 20px;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      for (let i = 0; i < 1000; i++) {
+        const div = document.createElement('div');
+        document.body.prepend(div);
+      }
+      document.body.addEventListener('mouseover', color);
+
+      function color(event) {
+        console.log(event.target);
+        if (event.target.tagName == 'DIV') {
+          event.target.style.backgroundColor = `rgb(
+              ${Math.round(Math.random() * 155 + 100)},${Math.round(
+            Math.random() * 155 + 100
+          )},
+          ${Math.round(Math.random() * 155 + 100)})`;
+        }
+      }
+    </script>
+  </body>
+</html>

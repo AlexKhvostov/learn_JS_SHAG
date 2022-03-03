@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      body {
+      }
+      input {
+        background: blue;
+      }
+      div {
+        background: yellow;
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        left: 100px;
+        top: 100px;
+      }
+    </style>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="div">
+      <input type="button" value="вверх" />
+      <input type="button" value="влево" />
+      <input type="button" value="вниз" />
+      <input type="button" value="вправо" />
+    </div>
+
+    <script>
+      const div = document.body.querySelector('div');
+      div.addEventListener('click', muve);
+
+      function muve(event) {
+      if (event.target.tagName == 'INPUT') {
+          if (event.target.value == 'вправо') {
+            console.log('this = ', this);
+            console.log('left = ', this.style.left);
+            console.log('left = ', div.style.left);
+
+            this.style.left = Number.parseInt(this.style.left) + 10 + 'px';
+          }
+          if (event.target.value == 'вверх') {
+            this.style.top = Number.parseInt(this.style.top) + 10 + 'px';
+          }
+          if (event.target.value == 'влево') {
+            this.style.left = Number.parseInt(this.style.left) - 10 + 'px';
+          }
+          if (event.target.value == 'вниз') {
+            this.style.top = Number.parseInt(this.style.top) - 10 + 'px';
+          }
+        }
+      }
+
+      // Задача
+      // Создайте div шириной и высотой 300px и добавьте в него 4 кнопки с тектом вверх, влево, вниз, вправо.
+      // Реализуйте функционал сдвига div на 10px при нажатии на кнопку, соответствующую направлению
+    </script>
+  </body>
+</html>

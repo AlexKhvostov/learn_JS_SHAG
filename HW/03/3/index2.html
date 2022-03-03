@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="button" value="0" />
+    <script>
+      // Задача
+      // Создайте кнопку, при клике на которую, она будет скрывать сама себя.
+
+      const btn = document.body.querySelector('input');
+      console.log(btn);
+      btn.addEventListener('click', up1);
+
+      function up1() {
+        this.style.visibility = 'hidden';
+      }
+    </script>
+  </body>
+</html>

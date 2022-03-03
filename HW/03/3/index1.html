@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="button" value="0" />
+  </body>
+
+  <script>
+//       Задача
+// Создайте кнопку с цифрой 0, при клике на которую, цифра будет увеличиваться на 1
+    const btn = document.body.querySelector('input');
+    console.log(btn);
+    btn.addEventListener('click', up1);
+
+    function up1() {
+      this.value = Number.parseInt(this.value) + 1;
+    }
+  </script>
+</html>
