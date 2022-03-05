@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      th {
+        border: 1px solid black;
+        width: 10px;
+        height: 10px;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      const limit = 10;
+      console.log('765');
+      const table = document.createElement('table');
+      document.body.append(table);
+      console.log(table);
+
+      for (let i = 1; i <= limit; i++) {
+        console.log(`${i}я строка создана`);
+        const tr = document.createElement('tr');
+        table.append(tr);
+
+        for (let j = 1; j <= limit; j++) {
+          const th = document.createElement('th');
+          console.log(`${j}я ячейка создана`);
+          tr.append(th);
+          if (i > 1 && j == limit && i < limit) {
+            const bt = document.createElement('input');
+            bt.type = 'button';
+            bt.value = 'print';
+            th.append(bt);
+          } else if (i == 1) {
+            th.textContent = `col ${j}`;
+          } else if (i == limit && j != limit) {
+            const bt = document.createElement('input');
+            bt.type = 'button';
+            bt.value = 'print';
+            th.append(bt);
+          } else {
+            th.textContent = `${i} - ${j}`;
+          }
+        }
+      }
+      console.dir(table);
+      table.addEventListener('click', print);
+
+      function print(event) {
+        if (event.target.tagName == 'INPUT') {
+          const tr = event.target.closest('th');
+        }
+      }
+    </script>
+  </body>
+</html>
