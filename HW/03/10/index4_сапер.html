@@ -5,13 +5,25 @@
     <title>Сапер</title>
 
     <style>
+      .finishLabel {
+        color: green;
+      }
+      .loseGame {
+        color: red;
+      }
+      .body {
+        display: flex;
+      }
+
+      .div {
+        display: flex;
+      }
+
       .bomb {
         color: rgb(255, 0, 0);
-        background-color: rgb(86, 255, 227);
+        background-color: rgb(255, 185, 185);
       }
-      .nearbomb {
-        color: rgb(49, 1, 104);
-      }
+
       .map {
         display: flex;
         flex-wrap: wrap;
@@ -19,39 +31,58 @@
       .item {
         width: 18px;
         height: 18px;
-        background-color: rgb(218, 237, 245);
+        background-color: rgb(82, 138, 80);
         border: 1px solid black;
       }
       .open {
-        background-color: yellow;
+        background-color: rgb(213, 236, 213);
+      }
+
+      .settings {
+        width: 50px;
+      }
+      .nearbomb {
+        color: rgb(0, 0, 0);
       }
     </style>
   </head>
 
   <body>
+    <div>
+      <span>Количество кликов: </span><span id="countClick">0</span>
+      <!-- <input type="button" id="starMap" value="Запустить" /> -->
+    </div>
+
     <script>
+      let openBox = 0;
       let countClick = 0;
-      let CountRowBox = 10;
-      let countBomb = 5;
+      const CountRowBox = 20;
+      const countBomb = 60;
+
+      // CountRowBox*CountRowBox-countBomb - кол-во яцеек для работы ( без бомб)
+
+      // let CountRowBox = document.body.querySelector("#widthMap").value;
+      // let countBomb = document.body.querySelector("#countBomb").value;
       let CountRowPX = CountRowBox * 20;
       let CountItem = CountRowBox * CountRowBox;
-      const map = document.createElement('div');
-      document.body.prepend(map);
-      map.classList.add('map');
+      const map = document.createElement("div");
+      document.body.append(map);
+      map.classList.add("map");
       map.style.width = `${CountRowPX}px`;
       let setNum = new Set();
 
       while (setNum.size != countBomb) {
         setNum.add(parseInt(Math.random() * CountItem));
       }
+
       console.dir(setNum);
 
       for (let i = 0; i < CountItem; i++) {
-        const div = document.createElement('div');
+        const div = document.createElement("div");
         //div.style.backgroundColor = `gray`;
         //div.style.color = `gray`;
-        div.style.textAlign = 'center';
-        div.classList.add('item');
+        div.style.textAlign = "center";
+        div.classList.add("item");
         div.classList.add(`row${Math.floor(i / CountRowBox) + 1}`);
         div.classList.add(`col${(i % CountRowBox) + 1}`);
         div.dataset.num = `${i}`;
@@ -63,85 +94,143 @@
 
       console.log(`без нажатия ${countClick}`);
 
-      map.addEventListener('click', firstClick);
-      map.addEventListener('click', nextClick);
+      map.addEventListener("click", countClickAdd);
+      map.addEventListener("click", click);
+      map.addEventListener("contextmenu", check);
 
-      function nextClick(event) {
-        /* если бомба - приграл
-         *
-         *  если "рядом" - "открыть"
-         *  если "пустой" - отрыть и проверить соседей
-         */
-        if (event.target.classList.contains('item')) {
-          if (event.target.classList.contains('bomb')) {
-            return 'GameOver';
-          } else {
-            console.log(`event ${countClick}`);
-            console.dir(event.target);
-            countClick++;
+      function check(event) {
+        event.preventDefault();
 
-            openMap(event.target);
-          }
-        }
-      }
-
-      function openMap(target) {
-        target.classList.contains('open');
-        if (target != null && target != undefined) {
-          if (
-            target.classList.contains('nearbomb') ||
-            target.classList.contains('open')
-          ) {
-            if (!target.classList.contains('open')) {
-              target.classList.add('open');
-            }
-          } else {
-            let row = Number.parseInt(target.dataset.row);
-            let col = Number.parseInt(target.dataset.col);
-
-            for (let i = row - 1; i <= row + 1; i = i + 2) {
-              for (let j = col - 1; j <= col + 1; j = j + 2) {
-                if (document.body.querySelector(`.row${i}.col${j}`) != null) {
-                  openMap(document.body.querySelector(`.row${i}.col${j}`));
-                }
-              }
-            }
-          }
-        }
-      }
-
-      function firstClick() {
-        if (countClick === 0) {
-          console.log(`firstClick ${countClick}`);
-          countClick++;
-          const divs = document.body.querySelectorAll('.item');
-          console.dir(Array.from(divs));
-
-          Array.from(divs).forEach((div, index) => {
-            if (setNum.has(index)) {
-              div.classList.add('bomb');
-              div.textContent = '☀';
-            }
-          });
-
-          Array.from(divs).forEach((div, index) => {
-            let countBomb = nearClass(
-              Number.parseInt(div.dataset.row),
-              Number.parseInt(div.dataset.col),
-              'bomb'
-            );
-            //let countBomb = nearClass(2, 2, 'bomb');
-
-            console.log('countBomb ', countBomb);
-
-            if (countBomb != 0 && !div.classList.contains('bomb')) {
-              div.classList.add('nearbomb');
-              div.textContent = countBomb;
-            }
-          });
+        if (!event.target.classList.contains("block")) {
+          event.target.textContent = "⚑";
+          event.target.classList.add("block");
+          event.target.style.color = "red";
         } else {
-          return;
+          event.target.textContent = "";
+          event.target.classList.remove("block");
+          event.target.style.color = "";
         }
+      }
+
+      function countClickAdd(event) {
+        if (
+          event.target.classList.contains("open") ||
+          event.target.classList.contains("block")
+        ) {
+          return;
+        } else {
+          countClick++;
+          document.body.querySelector("#countClick").textContent = countClick;
+        }
+      }
+
+      function click(event) {
+        if (event.target.classList.contains("block")) {
+          check(event);
+        } else {
+          let box = event.target;
+          if (box.classList.contains("bomb")) {
+            finish(event);
+          } else if (countClick === 1) {
+            firstClick(event);
+          } else {
+            nextClick(box);
+            isFinush(event);
+          }
+        }
+      }
+
+      function open(box) {
+        box.classList.add("open");
+        openBox++;
+        box.textContent = box.dataset.content;
+      }
+
+      function nextClick(box) {
+        // код для основной процедуры
+        if (
+          box.classList.contains("bomb") ||
+          box.classList.contains("open") ||
+          box.classList.contains("block")
+        )
+          return;
+        open(box);
+
+        if (box.classList.contains("nearbomb")) return;
+
+        let row = Number.parseInt(box.dataset.row);
+        let col = Number.parseInt(box.dataset.col);
+
+        let roxMin = row - 1 > 0 ? row - 1 : 1;
+        let roxMax = row + 1 < CountRowBox ? row + 1 : CountRowBox;
+        let colMin = col - 1 > 0 ? col - 1 : 1;
+        let colMax = col + 1 < CountRowBox ? col + 1 : CountRowBox;
+
+        console.log(`строка ${row}, столбец ${col}`);
+
+        for (let i = roxMin; i <= roxMax; i++) {
+          for (let j = colMin; j <= colMax; j++) {
+            nextClick(document.body.querySelector(`.row${i}.col${j}`));
+          }
+        }
+
+        // // верх
+        // nextClick(
+        //   document.body.querySelector(
+        //     `.row${row - 1 > 0 ? row - 1 : 1}.col${col}`
+        //   )
+        // );
+        // //низ
+        // nextClick(
+        //   document.body.querySelector(
+        //     `.row${row + 1 < CountRowBox ? row + 1 : CountRowBox}.col${col}`
+        //   )
+        // );
+        // // левый
+        // nextClick(
+        //   document.body.querySelector(
+        //     `.row${row}.col${col - 1 > 0 ? col - 1 : 1}`
+        //   )
+        // );
+        // // правый
+        // nextClick(
+        //   document.body.querySelector(
+        //     `.row${row}.col${col + 1 < CountRowBox ? col + 1 : CountRowBox}`
+        //   )
+        // );
+      }
+
+      function firstClick(event) {
+        console.log(`firstClick ${countClick}`);
+
+        //event.target.classList.add("open");
+        const divs = document.body.querySelectorAll(".item");
+        console.dir(Array.from(divs));
+
+        Array.from(divs).forEach((div, index) => {
+          if (setNum.has(index)) {
+            div.classList.add("bomb");
+            div.dataset.content = "☀";
+          }
+        });
+
+        Array.from(divs).forEach((div, index) => {
+          let countBomb = nearClass(
+            Number.parseInt(div.dataset.row),
+            Number.parseInt(div.dataset.col),
+            "bomb"
+          );
+          //let countBomb = nearClass(2, 2, 'bomb');
+
+          console.log("countBomb ", countBomb);
+
+          if (countBomb != 0 && !div.classList.contains("bomb")) {
+            div.classList.add("nearbomb");
+            div.dataset.content = countBomb;
+          }
+        });
+
+        nextClick(event.target);
       }
 
       function nearClass(row, col, serch) {
@@ -162,16 +251,49 @@
 
         return count;
       }
+
+      const finishButton = document.createElement("button");
+      finishButton.textContent = "Завершить";
+      finish.style;
+      document.body.append(finishButton);
+      finishButton.addEventListener("click", finish);
+
+      function finish(event) {
+        map.removeEventListener("click", click);
+        map.removeEventListener("click", countClickAdd);
+        map.removeEventListener("contextmenu", check);
+
+        const allItem = document.body.querySelectorAll(".item");
+        allItem.forEach((i) => {
+          i.textContent = i.dataset.content;
+        });
+        if (event.target.classList.contains("bomb")) {
+          const h2 = document.createElement("h2");
+          h2.textContent = "ПОТРАЧЕНО";
+          h2.classList.add("loseGame");
+          document.body.append(h2);
+        }
+      }
+
+      function isFinush(event) {
+        const divItem = document.body.querySelectorAll(".item");
+        divs = Array.from(divItem);
+        workmap = divs.filter(
+          (box) =>
+            box.classList.contains("open") || box.classList.contains("bomb")
+        );
+        console.log("workmap ", workmap);
+        console.log("divs ", divs);
+        //if (workmap.length == divs.length) {
+        if (openBox === CountRowBox * CountRowBox - countBomb) {
+          console.log("игра закончена");
+          const h2 = document.createElement("h2");
+          h2.textContent = "Игра закончена";
+          h2.classList.add("finishLabel");
+          document.body.append(h2);
+          finish(event);
+        }
+      }
     </script>
   </body>
 </html>
-
-<!--
-☀	&#9728;	\2600	Закрашенное солнце с лучами 
-⚑	&#9873;	\2691	Закрашенный флаг
-✔	&#10004;	\2714	Жирная отметка галочкой
-
-
-
-elem.classList.contains("class") – проверка наличия класса, возвращает true/false.
--->
