@@ -65,9 +65,9 @@
       // let countBomb = document.body.querySelector("#countBomb").value;
       let CountRowPX = CountRowBox * 20;
       let CountItem = CountRowBox * CountRowBox;
-      const map = document.createElement("div");
+      const map = document.createElement('div');
       document.body.append(map);
-      map.classList.add("map");
+      map.classList.add('map');
       map.style.width = `${CountRowPX}px`;
       let setNum = new Set();
 
@@ -78,11 +78,11 @@
       console.dir(setNum);
 
       for (let i = 0; i < CountItem; i++) {
-        const div = document.createElement("div");
+        const div = document.createElement('div');
         //div.style.backgroundColor = `gray`;
         //div.style.color = `gray`;
-        div.style.textAlign = "center";
-        div.classList.add("item");
+        div.style.textAlign = 'center';
+        div.classList.add('item');
         div.classList.add(`row${Math.floor(i / CountRowBox) + 1}`);
         div.classList.add(`col${(i % CountRowBox) + 1}`);
         div.dataset.num = `${i}`;
@@ -94,42 +94,42 @@
 
       console.log(`без нажатия ${countClick}`);
 
-      map.addEventListener("click", countClickAdd);
-      map.addEventListener("click", click);
-      map.addEventListener("contextmenu", check);
+      map.addEventListener('click', countClickAdd);
+      map.addEventListener('click', click);
+      map.addEventListener('contextmenu', check);
 
       function check(event) {
         event.preventDefault();
 
-        if (!event.target.classList.contains("block")) {
-          event.target.textContent = "⚑";
-          event.target.classList.add("block");
-          event.target.style.color = "red";
+        if (!event.target.classList.contains('block')) {
+          event.target.textContent = '⚑';
+          event.target.classList.add('block');
+          event.target.style.color = 'red';
         } else {
-          event.target.textContent = "";
-          event.target.classList.remove("block");
-          event.target.style.color = "";
+          event.target.textContent = '';
+          event.target.classList.remove('block');
+          event.target.style.color = '';
         }
       }
 
       function countClickAdd(event) {
         if (
-          event.target.classList.contains("open") ||
-          event.target.classList.contains("block")
+          event.target.classList.contains('open') ||
+          event.target.classList.contains('block')
         ) {
           return;
         } else {
           countClick++;
-          document.body.querySelector("#countClick").textContent = countClick;
+          document.body.querySelector('#countClick').textContent = countClick;
         }
       }
 
       function click(event) {
-        if (event.target.classList.contains("block")) {
+        if (event.target.classList.contains('block')) {
           check(event);
         } else {
           let box = event.target;
-          if (box.classList.contains("bomb")) {
+          if (box.classList.contains('bomb')) {
             finish(event);
           } else if (countClick === 1) {
             firstClick(event);
@@ -141,7 +141,7 @@
       }
 
       function open(box) {
-        box.classList.add("open");
+        box.classList.add('open');
         openBox++;
         box.textContent = box.dataset.content;
       }
@@ -149,14 +149,14 @@
       function nextClick(box) {
         // код для основной процедуры
         if (
-          box.classList.contains("bomb") ||
-          box.classList.contains("open") ||
-          box.classList.contains("block")
+          box.classList.contains('bomb') ||
+          box.classList.contains('open') ||
+          box.classList.contains('block')
         )
           return;
         open(box);
 
-        if (box.classList.contains("nearbomb")) return;
+        if (box.classList.contains('nearbomb')) return;
 
         let row = Number.parseInt(box.dataset.row);
         let col = Number.parseInt(box.dataset.col);
@@ -204,13 +204,13 @@
         console.log(`firstClick ${countClick}`);
 
         //event.target.classList.add("open");
-        const divs = document.body.querySelectorAll(".item");
+        const divs = document.body.querySelectorAll('.item');
         console.dir(Array.from(divs));
 
         Array.from(divs).forEach((div, index) => {
           if (setNum.has(index)) {
-            div.classList.add("bomb");
-            div.dataset.content = "☀";
+            div.classList.add('bomb');
+            div.dataset.content = '☀';
           }
         });
 
@@ -218,14 +218,14 @@
           let countBomb = nearClass(
             Number.parseInt(div.dataset.row),
             Number.parseInt(div.dataset.col),
-            "bomb"
+            'bomb'
           );
           //let countBomb = nearClass(2, 2, 'bomb');
 
-          console.log("countBomb ", countBomb);
+          console.log('countBomb ', countBomb);
 
-          if (countBomb != 0 && !div.classList.contains("bomb")) {
-            div.classList.add("nearbomb");
+          if (countBomb != 0 && !div.classList.contains('bomb')) {
+            div.classList.add('nearbomb');
             div.dataset.content = countBomb;
           }
         });
@@ -252,44 +252,44 @@
         return count;
       }
 
-      const finishButton = document.createElement("button");
-      finishButton.textContent = "Завершить";
+      const finishButton = document.createElement('button');
+      finishButton.textContent = 'Завершить';
       finish.style;
       document.body.append(finishButton);
-      finishButton.addEventListener("click", finish);
+      finishButton.addEventListener('click', finish);
 
       function finish(event) {
-        map.removeEventListener("click", click);
-        map.removeEventListener("click", countClickAdd);
-        map.removeEventListener("contextmenu", check);
+        map.removeEventListener('click', click);
+        map.removeEventListener('click', countClickAdd);
+        map.removeEventListener('contextmenu', check);
 
-        const allItem = document.body.querySelectorAll(".item");
+        const allItem = document.body.querySelectorAll('.item');
         allItem.forEach((i) => {
           i.textContent = i.dataset.content;
         });
-        if (event.target.classList.contains("bomb")) {
-          const h2 = document.createElement("h2");
-          h2.textContent = "ПОТРАЧЕНО";
-          h2.classList.add("loseGame");
+        if (event.target.classList.contains('bomb')) {
+          const h2 = document.createElement('h2');
+          h2.textContent = 'ПОТРАЧЕНО';
+          h2.classList.add('loseGame');
           document.body.append(h2);
         }
       }
 
       function isFinush(event) {
-        const divItem = document.body.querySelectorAll(".item");
+        const divItem = document.body.querySelectorAll('.item');
         divs = Array.from(divItem);
         workmap = divs.filter(
           (box) =>
-            box.classList.contains("open") || box.classList.contains("bomb")
+            box.classList.contains('open') || box.classList.contains('bomb')
         );
-        console.log("workmap ", workmap);
-        console.log("divs ", divs);
+        console.log('workmap ', workmap);
+        console.log('divs ', divs);
         //if (workmap.length == divs.length) {
         if (openBox === CountRowBox * CountRowBox - countBomb) {
-          console.log("игра закончена");
-          const h2 = document.createElement("h2");
-          h2.textContent = "Игра закончена";
-          h2.classList.add("finishLabel");
+          console.log('игра закончена');
+          const h2 = document.createElement('h2');
+          h2.textContent = 'Игра закончена';
+          h2.classList.add('finishLabel');
           document.body.append(h2);
           finish(event);
         }

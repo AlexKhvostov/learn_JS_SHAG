@@ -3,15 +3,67 @@
   <head>
     <meta charset="UTF-8" />
     <title>Document</title>
+    <style>
+      li {
+        border: 1px solid red;
+        width: 200px;
+      }
+    </style>
   </head>
   <body>
     <script>
       /**
        * Создайте список ul > li из 15 элементов. Заполните каждый цифрой он 1 до 15.
-       * Добавите обработчики событий, чтобы при клике левой кнопкой мыши цифра в li установливалась
-       * исходя из суммы 2 соседних элементов li при клике праквой кнопкой мыши цифра в li устанавливалась произведению 2 соседних элементов li
+       * Добавите обработчики событий, чтобы :
+       *
+       * при клике левой кнопкой мыши цифра в li установливалась исходя из суммы 2 соседних элементов li
+       * при клике праквой кнопкой мыши цифра в li устанавливалась произведению 2 соседних элементов li
        *
        */
+      const ul = document.createElement('ul');
+      document.body.append(ul);
+      let countLi = 15;
+      for (let i = 0; i < countLi; i++) {
+        addLi(i);
+      }
+
+      function addLi(i) {
+        const li = document.createElement('li');
+        li.textContent = i + 1;
+        li.dataset.num = `${i + 1}`;
+        ul.append(li);
+      }
+
+      ul.addEventListener('click', clickOne);
+      ul.addEventListener('contextmenu', clickOne);
+
+      function clickOne(event) {
+        // console.log(event);
+        // // console.log('first ');
+
+        if (event.target.tagName == 'LI') {
+          if (event.type == 'click') {
+            amount(event);
+          }
+
+          if (event.type == 'contextmenu') {
+            composition(event);
+          }
+        }
+      }
+
+      function amount(event) {
+        event.target.textContent =
+          (Number.parseInt(event.target.previousSibling?.textContent) || 0) +
+          (Number.parseInt(event.target.nextSibling?.textContent) || 0);
+      }
+
+      function composition(event) {
+        event.preventDefault();
+        event.target.textContent =
+          (Number.parseInt(event.target.previousSibling?.textContent) || 1) *
+          (Number.parseInt(event.target.nextSibling?.textContent) || 1);
+      }
     </script>
   </body>
 </html>

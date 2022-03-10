@@ -13,6 +13,35 @@
        * Задачу решите с помощью делегирования (то есть событие должно быть навешано на ul).
        *
        */
+
+      const ul = document.createElement('ul');
+      const btn = document.createElement('button');
+      btn.textContent = 'Добавить';
+
+      document.body.append(ul);
+      ul.after(btn);
+
+      let countLi = 5;
+
+      for (let i = 0; i < countLi; i++) {
+        addLi();
+      }
+
+      btn.addEventListener('click', addLi);
+
+      function addLi() {
+        const li = document.createElement('li');
+        li.textContent = 'пункт';
+        ul.append(li);
+      }
+
+      ul.addEventListener('click', addSimval);
+
+      function addSimval(event) {
+        if ((event.target.tagname = 'LI')) {
+          event.target.textContent = event.target.textContent + ' ! ';
+        }
+      }
     </script>
   </body>
 </html>
