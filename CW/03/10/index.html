@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="http://192.168.0.200:3000/form" method="post">
+      <label for="login">login: </label>
+      <input type="text" name="login" id="login" />
+      <br />
+      <label for="password">password: </label>
+      <input type="password" name="password" id="password" />
+      <br />
+      <label for="remember"> save</label>
+      <input type="checkbox" name="remember" id="remember" />
+      <br />
+      <select name="gender" id="gender">
+        <option value="1">mail</option>
+        <option value="0">Femail</option>
+        <option value="4">dog</option>
+
+        <option value="5">cat</option>
+      </select>
+      <br />
+
+      <input type="submit" value="Login" />
+    </form>
+    <ul></ul>
+
+    <script>
+      const errors = [];
+      const ul = document.body.querySelector('ul');
+      const form = document.forms[0];
+
+      function showErrors(errors) {
+        errors.forEach((error) => {
+          const li = document.createElement('li');
+          li.textContent = error;
+          li.classList = 'error';
+          ul.append(li);
+        });
+      }
+      form.elements.login.addEventListener('input', () => {
+        ul.innerHTML = '';
+        if (form.elements.login.value.length < 5) {
+          errors.push('короткий');
+          form.elements.login.style.border = '5px solid red';
+        } else {
+          form.elements.login.style.border = '5px solid green';
+        }
+
+        showErrors(errors);
+        errors.length = 0;
+      });
+
+      form.addEventListener('submit', (event) => {
+        ul.innerHTML = '';
+        event.preventDefault();
+        console.log(form.elements.login.value);
+        console.log(form.elements.password.value);
+        console.log(form.elements.remember.checked);
+        console.log(form.elements.gender.selectedIndex);
+        console.dir(form.elements.remember);
+        console.dir(form.elements.gender);
+
+        console.log('длина логина ', form.elements.login.value.length);
+
+        if (form.elements.login.value.length < 5) {
+          errors.push('логин должен быть более 5 симвалов');
+          console.log('логин должен быть более 5 симвалов');
+        }
+        if (form.elements.login.value.includes(' ')) {
+          errors.push('логин содержит пробелы');
+          console.log('логин содержит пробелы');
+        }
+
+        if (form.elements.password.value.length < 5) {
+          errors.push('пароль должен быть более 5 симвалов');
+          console.log('пароль должен быть более 5 симвалов');
+        }
+
+        if (form.elements.gender.selectedIndex !== 3) {
+          errors.push('ты не кот');
+        }
+
+        showErrors(errors);
+        errors.length = 0;
+      });
+    </script>
+  </body>
+</html>
