@@ -5,16 +5,33 @@
   </head>
   <body>
     <script>
-      /**
-       *  Создайте форму
-       *  Добавьте в нее 2 поля для ввода текста
-       *  Добавьте поле checkbox
-       *  Добавьте параграф p
-       *  Добавьте кнопку button
-       *
-       *  При вводе чисел в текстовые поля и нажатии кнопку в p должна выводится их сумма, если флажко checkbox будет отмечен, выводить разность чисел
-       *
-       */
+      const form = document.createElement("form");
+      form.method = "post";
+      const input1 = document.createElement("input");
+      input1.type = "text";
+      const input2 = document.createElement("input");
+      input2.type = "text";
+      const btn = document.createElement("input");
+      [btn.type, btn.value] = ["submit", "итого"];
+      const chk = document.createElement("input");
+      chk.type = "checkbox";
+      const prgf = document.createElement("p");
+
+      document.body.append(form);
+
+      form.append(input1);
+      form.append(input2);
+      form.append(chk);
+      form.append(btn);
+      form.append(prgf);
+
+      form.addEventListener("submit", () => {
+        event.preventDefault();
+        let i = 1;
+        chk.checked ? (i = -1) : i;
+        prgf.textContent =
+          Number.parseInt(input1.value) + i * Number.parseInt(input2.value);
+      });
     </script>
   </body>
 </html>
