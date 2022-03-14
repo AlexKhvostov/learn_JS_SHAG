@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Задача 2</title>
+  </head>
+  <body>
+    <img src="" alt="" />
+    <script>
+      const images = [
+        'https://cdn.pixabay.com/photo/2019/10/15/13/40/winter-4551699_960_720.jpg',
+        'https://cdn.pixabay.com/photo/2021/04/22/06/40/duck-6198196_960_720.jpg',
+        'https://cdn.pixabay.com/photo/2021/04/17/23/58/bunny-6187026_960_720.jpg',
+        'https://cdn.pixabay.com/photo/2020/09/18/21/16/child-5582985_960_720.jpg',
+      ];
+      //   Дан массив с картинками. Сделать, чтобы при нажатии на картинку она менялась на следующую, последняя меняется на первую.
+      //   На странице должен быть только один элемент с тегом <img>
+      const img = document.body.querySelector('img');
+      let num = 0;
+      img.src = images[num];
+
+      img.addEventListener('click', checkImg);
+
+      function checkImg() {
+        if (num != images.length - 1) {
+          num++;
+          img.src = images[num];
+        } else {
+          num = 0;
+          img.src = images[num];
+        }
+      }
+    </script>
+  </body>
+</html>
