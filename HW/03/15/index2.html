@@ -18,17 +18,22 @@
       let num = 0;
       img.src = images[num];
 
-      img.addEventListener('click', checkImg);
+      img.addEventListener('click', () => {
+        num++;
+        img.src = images[num % images.length];
+      });
 
-      function checkImg() {
-        if (num !== images.length - 1) {
-          num++;
-          img.src = images[num];
-        } else {
-          num = 0;
-          img.src = images[num];
-        }
-      }
+      // img.addEventListener('click', checkImg);
+
+      // function checkImg() {
+      //   if (num !== images.length - 1) {
+      //     num++;
+      //     img.src = images[num];
+      //   } else {
+      //     num = 0;
+      //     img.src = images[num];
+      //   }
+      // }
     </script>
   </body>
 </html>

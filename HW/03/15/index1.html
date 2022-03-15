@@ -7,6 +7,26 @@
     <script>
       // Создайте пустой список ul под ним input для текста и кнопку .
       // При нажатии на кнопку, дабавляйте введенный текст в список сверху. Если текст пустой, выводите alert с сообщением об ошибке
+
+      const ul = document.createElement('ul');
+      const btn = document.createElement('input');
+      [btn.type, btn.value] = ['submit', 'Добавить'];
+      const input = document.createElement('input');
+      input.type = 'text';
+
+      document.body.append(ul);
+      document.body.append(input);
+      document.body.append(btn);
+
+      btn.addEventListener('click', () => {
+        if (input.value == '') {
+          alert('пустое поле для воода');
+          return;
+        }
+        const li = document.createElement('li');
+        li.textContent = input.value;
+        ul.append(li);
+      });
     </script>
   </body>
 </html>
