@@ -29,7 +29,7 @@ inputZip.addEventListener('input', () => {
   }
 });
 
-const select = document.body.querySelector('#validationCustom04');
+   const select = document.body.querySelector('#validationCustom04');
 console.dir(select);
 
 select.addEventListener('change', () => {
