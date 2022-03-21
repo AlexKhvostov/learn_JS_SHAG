@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../RS_2022Q1/.idea/RS_2022Q1.iml" filepath="$PROJECT_DIR$/../RS_2022Q1/.idea/RS_2022Q1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../alexkhvostov-JSFE2022Q1/.idea/alexkhvostov-JSFE2022Q1.iml" filepath="$PROJECT_DIR$/../alexkhvostov-JSFE2022Q1/.idea/alexkhvostov-JSFE2022Q1.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/learn_JS_SHAG.iml" filepath="$PROJECT_DIR$/.idea/learn_JS_SHAG.iml" />
     </modules>
   </component>
