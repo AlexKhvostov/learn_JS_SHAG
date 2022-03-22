@@ -1,12 +1,21 @@
 
 //https://randomuser.me/api/?gender=female
+/**
+ * комментарий
+ *
+ * * Info sdf
+ * ? Warm dsf
+ * ! Error
+ * - тест
+ * + должен быть желтый
+ *
+ * */
 
 let num =0;
 let userInfo = {};
-const btnNext = document.body.querySelector("#btnNext");
-const btnAdd  = document.body.querySelector("#btnAdd");
-const tbody   = document.body.querySelector("tbody");
-
+const btnNext    = document.body.querySelector("#btnNext");
+const btnAdd     = document.body.querySelector("#btnAdd");
+const tbody      = document.body.querySelector("tbody");
 const photoUser  = document.body.querySelector("#cardInfoPhoto");
 const imgUser    = photoUser.firstElementChild;
 const genderUser = document.body.querySelector("#cardInfoMale");
@@ -25,7 +34,8 @@ function loadNextUser(){
 function loadUser(num){
     fetch(`https://randomuser.me/api/?page=${num}`)
         .then((response) => response.json())
-        .then((json) => {
+        .then((json) =>
+        {
             userInfo.imgUrl = json.results[0].picture.thumbnail;
             userInfo.gender = json.results[0].gender;
             userInfo.name   = json.results[0].name.first + " " + json.results[0].name.last;
@@ -42,7 +52,6 @@ function addInfoUser(){
     nameUser.textContent   = userInfo.name;
     emailUser.textContent  = userInfo.email;
     phoneUser.textContent  = userInfo.phone;
-
 }
 
 function addUserInList(){
@@ -68,6 +77,5 @@ function addUserInList(){
     tr.append(tdEmail);
     tr.append(tdPhone);
 }
-
 
 loadNextUser();
