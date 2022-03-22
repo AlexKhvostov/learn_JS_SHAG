@@ -47,6 +47,7 @@ const form = document.forms[0];
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
+  event.
   console.dir(event);
 
   if (select.value !== '') {
@@ -57,3 +58,5 @@ form.addEventListener('submit', (event) => {
     select.classList.remove('is-valid');
   }
 });
+/* todo проверка работы туду*/
+
