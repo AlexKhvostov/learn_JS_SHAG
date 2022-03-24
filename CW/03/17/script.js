@@ -34,6 +34,7 @@ function push(event) {
   })
     .then((response) => response.json())
     .then((json) => {
+
       console.log(json);
       const pError = document.createElement('p');
       pError.textContent = json.status;
@@ -43,6 +44,7 @@ function push(event) {
         pError.style.color = 'red';
       }
       div.append(pError);
+
     });
 }
 
