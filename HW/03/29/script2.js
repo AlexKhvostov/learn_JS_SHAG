@@ -1,6 +1,6 @@
 // функция, которую нужно реализовать
 const sleep = ms => {
-    return new Promise(resolve => setTimeout(()=> resolve(), ms));
+    return new Promise(resolve => setTimeout(() => resolve(), ms));
 };
 
 // её использование для выполнения действия с задержкой 5 секунд
