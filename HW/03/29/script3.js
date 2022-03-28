@@ -5,7 +5,7 @@ const loadJs = (src) => {
         script.onload = success();
         script.onerror = error();
         script.src = src;
-        document.head.append(script);
+        document.body.append(script);
 
     });
 };
