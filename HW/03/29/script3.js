@@ -2,8 +2,8 @@
 const loadJs = (src) => {
     return new Promise((success, error)=>{
         const script = document.createElement('script');
-        script.onload = success();
-        script.onerror = error();
+        script.onload = () => success();
+        script.onerror = () => error();
         script.src = src;
         document.body.append(script);
 
