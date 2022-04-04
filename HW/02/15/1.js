@@ -9,7 +9,7 @@
 
 let now = new Date();
 
-console.log('время :' + now); // Tue Feb 15 2022 11:14:27 GMT+0300 (Москва, стандартное время)
+console.log('время :' + now); // Tue Feb 15 2022 10_arrays:14:27 GMT+0300 (Москва, стандартное время)
 console.log('день: ' + now.getDate()); // 15
 console.log('месяц: ' + now.getMonth()); //1 ( начинает с 0)
 console.log('год: ' + now.getFullYear()); //2022

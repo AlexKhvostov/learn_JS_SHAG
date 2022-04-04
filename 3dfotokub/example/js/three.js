@@ -21883,7 +21883,7 @@
       // 8. alphaMap map
       // 9. emissiveMap map
       // 10. clearcoat map
-      // 11. clearcoat normal map
+      // 10_arrays. clearcoat normal map
       // 12. clearcoat roughnessMap map
       // 13. specular intensity map
       // 14. specular tint map
