@@ -1,26 +1,23 @@
 function draw() {
     const canvas = document.getElementById('canvas');
-    if (canvas.getContext){
-        const ctx = canvas.getContext('2d');
 
-        ctx.beginPath();
-        ctx.arc(75,75,50,0,Math.PI*2,true); // Внешняя окружность
-        ctx.moveTo(110,75);
-        ctx.arc(75,75,35,0,Math.PI,false);  // рот (по часовой стрелке)
-        ctx.moveTo(65,65);
-        ctx.arc(60,65,5,0,Math.PI*2,true);  // Левый глаз
-        ctx.moveTo(95,65);
-        ctx.arc(90,65,5,0,Math.PI*2,true);  // Правый глаз
-        ctx.stroke();
-    }
+let countStar = 5;
+let colorArr = [`red`,`green`,`blue`];
 
-
-let [x,y,minR,maxR,countPic,border] = [200,200, 100, 50 ,8,2];
-
-    star(canvas,x,y,minR,maxR,countPic,border);
+for (let i = 1; i<= countStar; i++){
+    let x = rand(100, 1000);
+    let y = rand(100, 700);
+    let maxR = rand(50, 150);
+    let minR = rand(rand(20, maxR-20), maxR-10);
+    let countPic = rand(4, 20);
+    let border = rand(1, 10);
+    let color = colorArr[rand(0, colorArr.length)];
+    star(canvas,x,y,minR,maxR,countPic,border,color);
 }
 
-function star(canvas,x, y, minR,maxR,countPic,border){
+}
+
+function star(canvas,x, y, minR,maxR,countPic,border,color){
     if (canvas.getContext){
         let ctx = canvas.getContext('2d');
         ctx.beginPath();
@@ -30,12 +27,17 @@ function star(canvas,x, y, minR,maxR,countPic,border){
             ctx.arc(x, y, maxR, (Math.PI/countPic)*(i+1), (Math.PI/countPic)*(i+1), false);
         }
         ctx.arc(x, y, minR, 0, 0, false);
-
-        ctx.lineWidth = 2;
-        ctx.fillStyle = "#FFA500";
-
+        ctx.lineWidth = border;
+        ctx.fillStyle = color;
         ctx.stroke();
         ctx.fill();
-
     }
 }
+
+function rand(min, max){
+    return Math.round(Math.random()*(max -min))+min;
+}
+
+console.log (rand(100,300));
+console.log (rand(400,800));
+console.log (rand(1000,3000));
