@@ -29307,7 +29307,7 @@
           //for ( b = bevelSegments; b > 0; b -- ) {
           const t = b / bevelSegments;
           const z = bevelThickness * Math.cos((t * Math.PI) / 2);
-          const bs = bevelSize * Math.sin((t * Math.PI) / 2) + bevelOffset; // contract shape
+          const bs = bevelSize * Math.sin((t * Math.PI) / 2) + bevelOffset; // contract.js shape
 
           for (let i = 0, il = contour.length; i < il; i++) {
             const vert = scalePt2(contour[i], contourMovements[i], bs);
@@ -29366,7 +29366,7 @@
         for (let b = bevelSegments - 1; b >= 0; b--) {
           const t = b / bevelSegments;
           const z = bevelThickness * Math.cos((t * Math.PI) / 2);
-          const bs = bevelSize * Math.sin((t * Math.PI) / 2) + bevelOffset; // contract shape
+          const bs = bevelSize * Math.sin((t * Math.PI) / 2) + bevelOffset; // contract.js shape
 
           for (let i = 0, il = contour.length; i < il; i++) {
             const vert = scalePt2(contour[i], contourMovements[i], bs);
