@@ -2,7 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../alexkhvostov-JSFE2022Q1" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/react-demo-server" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../serverNode/todo-server" vcs="Git" />
   </component>
 </project>

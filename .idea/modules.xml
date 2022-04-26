@@ -3,10 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../RSSCHOOL/.idea/RSSCHOOL.iml" filepath="$PROJECT_DIR$/../RSSCHOOL/.idea/RSSCHOOL.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../alexkhvostov-JSFE2022Q1/.idea/alexkhvostov-JSFE2022Q1.iml" filepath="$PROJECT_DIR$/../alexkhvostov-JSFE2022Q1/.idea/alexkhvostov-JSFE2022Q1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../ex/.idea/ex.iml" filepath="$PROJECT_DIR$/../ex/.idea/ex.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/learn_JS_SHAG.iml" filepath="$PROJECT_DIR$/.idea/learn_JS_SHAG.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../stepn/.idea/stepn.iml" filepath="$PROJECT_DIR$/../stepn/.idea/stepn.iml" />
       <module fileurl="file://$PROJECT_DIR$/../serverNode/todo-server/.idea/todo-server.iml" filepath="$PROJECT_DIR$/../serverNode/todo-server/.idea/todo-server.iml" />
     </modules>
   </component>

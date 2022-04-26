@@ -8,10 +8,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="alexkhvostov-JSFE2022Q1" />
     <orderEntry type="module" module-name="todo-server" />
     <orderEntry type="module" module-name="RSSCHOOL" />
-    <orderEntry type="module" module-name="stepn" />
-    <orderEntry type="module" module-name="ex" />
   </component>
 </module>
