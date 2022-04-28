@@ -1,17 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import TestForm from "./testForm";
-import Image from "./img";
 import reportWebVitals from './reportWebVitals';
+import GridBox from "./gridBox";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <TestForm />
-    <br/>
-      <Image/>
-  </React.StrictMode>
+    <React.Fragment>
+      <GridBox row = {10} col = {10}/>
+
+    </React.Fragment>
 );
 
 
